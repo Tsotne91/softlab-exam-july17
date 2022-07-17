@@ -2,19 +2,19 @@ import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import {Alert, InputGroup} from "react-bootstrap";
+import {Alert, Container, InputGroup} from "react-bootstrap";
 import api from "./api";
 
 export default function ChatModal({show, user, onHide}) {
     const [formValue, setFormValue] = useState("");
     const [messages, setMessages] = useState([]);
-    const [sent, setSent] = useState(false);
+
 
     useEffect(() => {
-           getConversation().catch()
-        return (
-
-        )
+        let myInterval = setInterval(getConversation, 3000);
+       return (() =>
+           clearInterval(myInterval)
+           )
     }, [user])
 
 
@@ -32,8 +32,8 @@ export default function ChatModal({show, user, onHide}) {
         } catch (e) {
             console.log(e)
         }
-        await getConversation();
         setFormValue("");
+        await getConversation();
     }
 
     return (
@@ -42,26 +42,25 @@ export default function ChatModal({show, user, onHide}) {
                 <Modal.Header closeButton>
                     <Modal.Title> {user.firstName} {user.lastName}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <div>
+                <Modal.Body >
+                    <Container className="overflow-auto vh-100">
                         {
                             messages.map(message => (
                                 message.sender === user.username ?
-                                    <Alert key={message.time} variant="primary">
+                                    <Alert key={message.time} variant="secondary" className="me-5">
                                     {message.text}
                                 </Alert> :
-                                    <Alert key={message.time} variant="secondary">
+                                    <Alert key={message.time} variant="primary" className="ms-5">
                                         {message.text}
                                     </Alert>
-
                                 ))
                         }
-                    </div>
+                    </Container>
                     <Form>
                         <InputGroup className="mb-3">
-                            <Form.Group>
+                            <Form.Group className="flex-fill">
                                 <Form.Control
-                                    type="text"
+                                    type="textarea"
                                     placeholder="Type here..."
                                 onChange={changeHandler}
                                 required/>
