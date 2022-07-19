@@ -1,8 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import {Alert, Container, InputGroup} from "react-bootstrap";
+import {Alert, Container, InputGroup, Button, Form, Modal} from "react-bootstrap";
+import {RiSendPlaneFill} from "react-icons/ri";
 import api from "./api";
 
 export default function ChatModal({show, user, onHide}) {
@@ -76,7 +74,9 @@ export default function ChatModal({show, user, onHide}) {
                             </Form.Group>
                             <Button
                                 type="submit"
-                            >Send</Button>
+                            >
+                                <RiSendPlaneFill/>
+                            </Button>
                         </InputGroup>
                     </Form>
                 </Modal.Body>
