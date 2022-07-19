@@ -17,7 +17,6 @@ export default function ChatModal({show, user, onHide}) {
     }, [user])
 
     useEffect(() => {
-        // 👇️ scroll to bottom every time messages change
         bottomRef.current?.scrollIntoView({behavior: 'smooth'});
     }, [messages]);
 
