@@ -36,12 +36,11 @@ export default function ChatModal({show, user, onHide}) {
         try {
             await api.post(`chat?username=${user.username}`, {"text": formValue});
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
         setFormValue("");
         await getConversation();
     }
-
 
 
     return (
@@ -72,6 +71,7 @@ export default function ChatModal({show, user, onHide}) {
                                     type="textarea"
                                     placeholder="Type here..."
                                     onChange={changeHandler}
+                                    value={formValue}
                                     required/>
                             </Form.Group>
                             <Button
