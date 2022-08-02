@@ -16,9 +16,9 @@ export default function ChatModal({show, user, onHide}) {
         )
     }, [user])
 
-    useEffect(() => {
-        bottomRef.current?.scrollIntoView({behavior: 'smooth'});
-    }, [messages]);
+    // useEffect(() => {
+    //     bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    // }, [messages]);
 
 
     async function getConversation() {
@@ -39,22 +39,21 @@ export default function ChatModal({show, user, onHide}) {
         await getConversation();
     }
 
-
     return (
         <>
             <Modal show={show} onHide={onHide}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton className="position-sticky">
                     <Modal.Title> {user.firstName} {user.lastName}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Container className="overflow-auto vh-100">
+                    <Container className="overflow-auto" style={{height: "75vh"}}>
                         {
                             messages.map(message => (
                                 message.sender === user.username ?
-                                    <Alert key={message.time} variant="secondary" className="me-5">
+                                    <Alert key={message.time} variant="secondary" className="me-5 my-2 py-2">
                                         {message.text}
                                     </Alert> :
-                                    <Alert key={message.time} variant="primary" className="ms-5">
+                                    <Alert key={message.time} variant="primary" className="ms-5 my-2 py-2">
                                         {message.text}
                                     </Alert>
                             ))

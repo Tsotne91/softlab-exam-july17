@@ -51,7 +51,7 @@ export default function ChatMainPage() {
                     >Logout</Button>
                 </Container>
             </Navbar>
-            <ListGroup className="m-3">
+            <ListGroup className="m-2">
                 {
                     users.map(user => (
                         <ListGroup.Item key={user.username}
@@ -60,6 +60,7 @@ export default function ChatMainPage() {
                         >
                             <div className="ms-3 me-auto"
                                  onClick={() => showChat(user)}
+                                 style={{cursor: "pointer"}}
                             >
                                 {user.firstName} {user.lastName}
                             </div>
