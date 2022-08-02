@@ -16,9 +16,9 @@ export default function ChatModal({show, user, onHide}) {
         )
     }, [user])
 
-    // useEffect(() => {
-    //     bottomRef.current?.scrollIntoView({behavior: 'smooth'});
-    // }, [messages]);
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    }, [messages.length]);
 
 
     async function getConversation() {
@@ -46,7 +46,7 @@ export default function ChatModal({show, user, onHide}) {
                     <Modal.Title> {user.firstName} {user.lastName}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Container className="overflow-auto" style={{height: "75vh"}}>
+                    <Container className="overflow-auto" style={{height: "70vh"}}>
                         {
                             messages.map(message => (
                                 message.sender === user.username ?
